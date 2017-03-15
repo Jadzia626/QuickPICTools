@@ -16,14 +16,14 @@ class DataWrapper():
         self.dataSets  = {}
         self.dataFiles = []
 
-        dicEmpty = {"All":None,"XY":None,"XZ":None,"YZ":None}
+        emptyDict = {"All":None,"XY":None,"XZ":None,"YZ":None}
 
-        self.dataSets["BField"]  = dicEmpty
-        self.dataSets["EField"]  = dicEmpty
-        self.dataSets["Current"] = dicEmpty
-        self.dataSets["PSI"]     = dicEmpty
-        self.dataSets["Beam"]    = dicEmpty
-        self.dataSets["Plasma"]  = dicEmpty
+        self.dataSets["BField"]  = emptyDict
+        self.dataSets["EField"]  = emptyDict
+        self.dataSets["Current"] = emptyDict
+        self.dataSets["PSI"]     = emptyDict
+        self.dataSets["Beam"]    = emptyDict
+        self.dataSets["Plasma"]  = emptyDict
 
         return
 
