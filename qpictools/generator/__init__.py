@@ -7,9 +7,10 @@
 import logging as logger
 
 from os         import path, mkdir, listdir
+from shutil     import copyfile
 from qpictools  import *
 
-def generateInputs(inDir, outDir, repMask, repData, nameMask, nameData, jobFile):
+def generateInputs(inDir, outDir, repMask, repData, nameMask, nameData, jobFile, execFile=""):
     """generateInputs
     inDir    : Directory to scan. The function will open all subdirectories, and read the rpinput
                file, do a replace of the value in repMask with the value in repData. The file
@@ -64,7 +65,8 @@ def generateInputs(inDir, outDir, repMask, repData, nameMask, nameData, jobFile)
         inData  = fileObj.read()
         fileObj.close()
 
-        jobInFile = path.join(inPath,jobFile)
+        jobInFile  = path.join(inPath,jobFile)
+        execInFile = path.join(inPath,execFile)
         if path.isfile(jobInFile):
             fileObj   = open(jobInFile,encoding="utf-8",mode="r")
             jobInData = fileObj.read()
@@ -92,6 +94,10 @@ def generateInputs(inDir, outDir, repMask, repData, nameMask, nameData, jobFile)
                 fileObj    = open(jobOutFile,encoding="utf-8",mode="w")
                 fileObj.write(jobInData.replace("%NAME%",outName))
                 fileObj.close()
+
+            if path.isfile(execInFile):
+                execOutFile = path.join(outPath,execFile)
+                copyfile(execInFile,execOutFile)
 
             print(" – Done")
 
